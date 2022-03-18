@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : sql 명령어들의 집합, java의 패키지와 같은 개념, sql을 사용하기전 회원관리다, 게시판이다...등 
+	구분짓기 위해 주로 사용됨 -->
+<mapper namespace="my">
+	<insert id="memberInsert">
+		insert into member(userid,passwd,name,email,zipcode,address1,address2,phone)
+		values
+		(#{userid},#{passwd},#{name},#{email},#{zipcode},#{address1},#{address2},#{phone})
+	</insert>
+
+	
+
+	<select id="logincheck" resultType="String">
+		select name from my_member
+		where userid=#{userid} and passwd=#{passwd}
+	</select>
+
+	
+
+
+	<select id="view" resultType="mymember.dto.MemberDTO">
+		select * from member
+		where
+		userid=#{userid}
+	</select>
+
+	<update id="update">
+		update member set name=#{name}, email=#{email}, zipcode=#{zipcode}, address1=#{address1}, address2=#{address2}, phone=#{phone}
+		where userid=#{userid} and passwd=#{passwd}
+	</update>
+
+	
+	<delete id="memberDelete">
+	 delete from member
+	 where userid=#{userid}
+	</delete>
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+</mapper>
